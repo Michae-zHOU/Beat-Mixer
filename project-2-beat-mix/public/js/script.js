@@ -73,45 +73,18 @@ const invert = (soundName) => {
     }
 }
 
-
-const DIRECTION = 4;
-const LEFT = 0;
-const RIGHT = 1;
-const ABOVE = 2;
-const BELOW = 3;
-const WIDTH = 5;
-const HEIGHT = 5;
-
-const checkValidPosition = (posX, posY) => {
-    return !(posX === undefined || posY === undefined || posX < 0 || posX >= WIDTH || posY < 0 || posY >= HEIGHT);
-}
-
-const getNeighborPads = (x , y, size) => {
-    let result = [];
-
-    if(!checkValidPosition(x,y))
-        return result;
-
-    for(var index = 0; index < size-1; index++) {
-        let xValue = x;
-        let yValue = y;
-        if( index % DIRECTION === LEFT) {
-            xValue = x - Math.floor(index / DIRECTION) - 1;
-        }
-        else if( index % DIRECTION === RIGHT) {
-            xValue = x + Math.floor(index / DIRECTION) + 1;
-        }
-        else if( index % DIRECTION === ABOVE) {
-            yValue = y + Math.floor(index / DIRECTION) + 1;
-        }
-        else{
-            yValue = y - Math.floor(index / DIRECTION) - 1;
-        }
-
-        if(checkValidPosition(xValue, yValue))
-            result.push([xValue,yValue]);
-
-    }
-    
-    return result;
-}
+const getNeighborPads = (x, y, size) => {
+  const neighborPads = [];
+  if (x >= size || y >= size || x < 0 || y < 0 || size < 1) {
+    return neighborPads;
+  }
+  neighborPads.push([x - 1, y]);
+  neighborPads.push([x, y - 1]);
+  neighborPads.push([x + 1, y]);
+  neighborPads.push([x, y + 1]);
+  return neighborPads.filter((neighbor) => {
+    return neighbor.every((val) => {
+      return val >= 0 && val < size;
+    });
+  });
+};

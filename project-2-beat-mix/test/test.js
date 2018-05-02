@@ -400,7 +400,7 @@ describe('Preset function - presetHandler.js file', () => {
       expect(result).to.be.deep.equal([]);
       result = getNeighborPads(5, 0, 4);
       expect(result).to.be.deep.equal([]);
-      result = getNeighborPads(0, 5, 4);
+      result = getNeighborPads(4, 0, 4);
       expect(result).to.be.deep.equal([]);
       result = getNeighborPads(1, 5, 4);
       expect(result).to.be.deep.equal([]);
