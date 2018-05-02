@@ -3,15 +3,16 @@ const presets = require('./presets');
 
 // Complete this function:
 const presetHandler = (requestType, index, newPresetArray) => {
-    if(index < 0 || index >= preset.length){
+    
+    if(index < 0 || index >= presets.length){
         return [404,[]];
     }
     if(requestType === 'PUT'){
-        preset[index] = newPresetArray;
-        return [200,preset[index]];
+        presets[index] = newPresetArray;
+        return [200,presets[index]];
     }
     else if(requestType === 'GET'){
-        return [200,preset[index]];
+        return [200,presets[index]];
     }
     else{
         return [400,[]];
